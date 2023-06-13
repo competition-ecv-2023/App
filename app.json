@@ -45,6 +45,12 @@
         "projectId": "f118d354-5daf-4d7b-8ccb-d91ebcbfdc60"
       }
     },
-    "owner": "aubrian-ecv"
+    "owner": "aubrian-ecv",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f118d354-5daf-4d7b-8ccb-d91ebcbfdc60"
+    }
   }
 }
