@@ -25,6 +25,26 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "sentry-expo"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "SENTRY_ORG",
+            "project": "SENTRY_PROJECT"
+          }
+        }
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f118d354-5daf-4d7b-8ccb-d91ebcbfdc60"
+      }
+    },
+    "owner": "aubrian-ecv"
   }
 }
