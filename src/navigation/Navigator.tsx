@@ -2,6 +2,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {Layout, Text} from "@ui-kitten/components";
 import {useAuthentication} from "../context/Authentication";
 import AuthNavigator from "./AuthNavigator";
+import BottomTabNavigator from "./BottomTabNavigator";
 
 const Stack = createNativeStackNavigator();
 const Navigator = () => {
@@ -10,12 +11,8 @@ const Navigator = () => {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
             {
-                user ? (
-                    <Stack.Group>
-                        <Stack.Screen name={"Test"}>
-                            {() => <Layout level={"1"}><Text status={"success"}>OUI</Text></Layout>}
-                        </Stack.Screen>
-                    </Stack.Group>
+                !user ? (
+                    <Stack.Screen name={"BOTTOM_STACK"} component={BottomTabNavigator} />
                 ) : (
                     <Stack.Screen name={"AUTH_STACK"} component={AuthNavigator}/>
                 )}
