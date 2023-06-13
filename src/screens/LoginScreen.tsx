@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import {TouchableOpacity} from "react-native";
 import {Routes} from "../navigation/Route";
 import {ScreenProps} from "../interfaces/ScreenProps";
+import PasswordInput from "../components/PasswordInput";
 
 const LoginScreen = ({navigation}: ScreenProps) => {
 
@@ -12,7 +13,6 @@ const LoginScreen = ({navigation}: ScreenProps) => {
     const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true);
 
     const toggleSecureEntry = () => {
-        console.log('oui')
         setSecureTextEntry(!secureTextEntry);
     }
 
@@ -40,14 +40,12 @@ const LoginScreen = ({navigation}: ScreenProps) => {
                     label="Email"
                     placeholder="Votre email"
                 />
-                <Input
+                <PasswordInput
                     style={{marginBottom: 10}}
                     value={password}
                     label="Mot de passe"
                     placeholder="Mot de passe"
-                    secureTextEntry={secureTextEntry}
                     onChangeText={newValue => setPassword(newValue)}
-                    accessoryRight={renderIcon}
                 />
                 <Button
                     style={{marginBottom: 10}}
