@@ -1,6 +1,5 @@
 import {Icon, IconElement, Text, TopNavigation, TopNavigationAction} from "@ui-kitten/components";
 import React from "react";
-import {useNavigation} from "@react-navigation/native";
 import {StatusBar} from "react-native";
 import {NativeStackHeaderProps} from "@react-navigation/native-stack/lib/typescript/src/types";
 import {BottomTabHeaderProps} from "@react-navigation/bottom-tabs";
