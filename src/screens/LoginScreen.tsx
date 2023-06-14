@@ -10,20 +10,6 @@ const LoginScreen = ({navigation}: ScreenProps) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true);
-
-    const toggleSecureEntry = () => {
-        setSecureTextEntry(!secureTextEntry);
-    }
-
-    const renderIcon = (props: any): React.ReactElement => (
-        <TouchableOpacity activeOpacity={0.5} onPress={toggleSecureEntry}>
-            <Icon
-                {...props}
-                name={secureTextEntry ? 'eye-off' : 'eye'}
-            />
-        </TouchableOpacity>
-    );
 
     return (
         <ScreenContainer withScroll>
