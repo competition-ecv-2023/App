@@ -32,8 +32,7 @@ const ScreenContainer = ({children, withScroll = false}: AuthenticationProviderP
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingTop: StatusBar.currentHeight,
+        flex: 1
     }
 })
 

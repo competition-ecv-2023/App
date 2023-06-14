@@ -1,25 +1,9 @@
-import {
-    Button,
-    Icon,
-    IconElement,
-    Input,
-    Layout,
-    Text,
-    TopNavigation,
-    TopNavigationAction
-} from "@ui-kitten/components";
+import {Button, Input, Layout} from "@ui-kitten/components";
 import ScreenContainer from "../components/ScreenContainer";
 import {ScreenProps} from "../interfaces/ScreenProps";
 import React, {useState} from "react";
 import PasswordInput from "../components/PasswordInput";
 
-const BackIcon = (props: any): IconElement => (
-    <Icon
-        {...props}
-        name='arrow-back'
-        pack={'ionicons'}
-    />
-);
 const RegisterScreen = ({navigation}: ScreenProps) => {
 
     const [email, setEmail] = useState("");
@@ -29,14 +13,6 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
 
     return (
         <ScreenContainer withScroll>
-            <TopNavigation
-                title={"Inscription"}
-                accessoryLeft={() => (
-                    <TopNavigationAction
-                        icon={BackIcon}
-                        onPress={() => navigation.goBack()}
-                    />
-                )}/>
             <Layout style={{padding: 10}}>
                 <Input
                     style={{marginBottom: 10}}
