@@ -12,20 +12,19 @@ const BackIcon = (props: any): IconElement => (
         pack={'ionicons'}
     />
 );
-const CustomHeader = (props: NativeStackHeaderProps) => {
-
-    const navigation = useNavigation()
+const CustomHeader = (props: NativeStackHeaderProps|BottomTabHeaderProps) => {
 
     return (
         <TopNavigation
             title={evaProps => <Text {...evaProps} style={{fontWeight: "700"}}>{props.route.name}</Text>}
             style={{paddingTop: StatusBar.currentHeight}}
             accessoryLeft={() => {
+                // @ts-ignore
                 if (props.back) {
                     return (
                         <TopNavigationAction
                             icon={BackIcon}
-                            onPress={() => navigation.goBack()}
+                            onPress={() => props.navigation.goBack()}
                         />
                     )
                 }
