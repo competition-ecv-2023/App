@@ -1,15 +1,57 @@
-import {Button, Input, Layout} from "@ui-kitten/components";
+import {Button, Input, Layout, Text} from "@ui-kitten/components";
 import ScreenContainer from "../components/ScreenContainer";
 import {ScreenProps} from "../interfaces/ScreenProps";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import PasswordInput from "../components/PasswordInput";
+import {LoadingIndicator} from "./LoginScreen";
+import {AxiosError} from "axios";
+import {useApi} from "../hooks/UseApi";
+import {Routes} from "../navigation/Route";
+
+interface RegisterErrors {
+    email?: string;
+    username?: string;
+    password?: string;
+    passwordToVerify?: string;
+}
 
 const RegisterScreen = ({navigation}: ScreenProps) => {
 
     const [email, setEmail] = useState("");
-    const [pseudo, setPseudo] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [passwordToVerify, setPasswordToVerify] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const [errors, setErrors] = useState<RegisterErrors>({});
+
+    const api = useApi();
+
+    const handleRegister = async () => {
+        setLoading(true);
+        api.post("users", {
+            email, password, passwordToVerify, username
+        }, {
+            headers: {"Content-Type": "application/x-www-form-urlencoded"}
+        })
+            .then(() => {
+                setLoading(false);
+                navigation.navigate(Routes.LOGIN_SCREEN);
+            })
+            .catch((error: AxiosError) => {
+                const message = error.response?.headers["x-error-message"];
+                const errorField = error.response?.headers["x-error-field"];
+                console.log(errorField)
+                // @ts-ignore
+                setErrors((old) => ({[errorField]: message}));
+                setLoading(false);
+            });
+    }
+
+    const renderErrorCaption = (field: string) => (
+        // @ts-ignore
+        <Text style={{color: 'red', fontSize: 12}}>{errors[field]}</Text>
+    )
 
     return (
         <ScreenContainer withScroll>
@@ -20,13 +62,18 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
                     onChangeText={newValue => setEmail(newValue)}
                     label="Email"
                     placeholder="Votre email"
+                    caption={() => renderErrorCaption("email")}
+                    status={errors["email"] ? "danger" : "basic"}
+                    keyboardType={"email-address"}
                 />
                 <Input
                     style={{marginBottom: 10}}
-                    value={pseudo}
-                    onChangeText={newValue => setPseudo(newValue)}
+                    value={username}
+                    onChangeText={newValue => setUsername(newValue)}
                     label="Pseudo"
-                    placeholder="Votre pseudo"
+                    placeholder="Votre username"
+                    caption={() => renderErrorCaption("username")}
+                    status={errors["username"] ? "danger" : "basic"}
                 />
                 <PasswordInput
                     style={{marginBottom: 10}}
@@ -34,19 +81,25 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
                     onChangeText={newValue => setPassword(newValue)}
                     label="Mot de passe"
                     placeholder="Votre mot de passe"
+                    caption={() => renderErrorCaption("password")}
+                    status={errors["password"] ? "danger" : "basic"}
                 />
                 <PasswordInput
                     style={{marginBottom: 10}}
-                    value={passwordConfirm}
-                    onChangeText={newValue => setPasswordConfirm(newValue)}
+                    value={passwordToVerify}
+                    onChangeText={newValue => setPasswordToVerify(newValue)}
                     label="Confirmation du mot de passe"
                     placeholder="Confirmez votre mot de passe"
+                    caption={() => renderErrorCaption("passwordToVerify")}
+                    status={errors["passwordToVerify"] ? "danger" : "basic"}
                 />
                 <Button
                     style={{marginBottom: 10}}
                     size={"large"}
-                    onPress={() => alert('Fetch inscription')}
-                    disabled={email.length === 0 || pseudo.length === 0 || password.length <= 8 || password !== passwordConfirm}
+                    onPress={handleRegister}
+                    disabled={loading || email.length === 0 || username.length === 0 || password.length <= 8 || password !== passwordToVerify}
+                    // @ts-ignore
+                    accessoryLeft={loading ? LoadingIndicator : () => {}}
                 >
                     Créer mon compte
                 </Button>

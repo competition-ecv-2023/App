@@ -7,7 +7,7 @@ import PasswordInput from "../components/PasswordInput";
 import {useAuthentication} from "../context/Authentication";
 import {ImageProps, View} from "react-native";
 
-const LoadingIndicator = (props: ImageProps): React.ReactElement => (
+export const LoadingIndicator = (props: ImageProps): React.ReactElement => (
     <View style={[props.style, {alignItems: "center", justifyContent: "center"}]}>
         <Spinner size='small' />
     </View>
@@ -46,6 +46,7 @@ const LoginScreen = ({navigation}: ScreenProps) => {
                     onChangeText={newValue => setEmail(newValue)}
                     label="Email"
                     placeholder="Votre email"
+                    keyboardType={"email-address"}
                 />
                 <PasswordInput
                     style={{marginBottom: 10}}
