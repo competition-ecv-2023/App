@@ -1,20 +1,81 @@
-import React, {createContext, useContext, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
+import {deleteValueFor, getValueFor, save} from "../utils/SecureStore";
+import {useApi} from "../hooks/UseApi";
+import {AxiosError} from "axios";
 
 interface AuthenticationProviderProps {
     children: React.ReactNode;
 }
 
-const AuthenticationContext = createContext({
-    user: false,
-    setUser: (user: boolean) => {
-    },
-});
+interface User {
+    id: number;
+    pseudo: string;
+    email: string;
+    isVerified: boolean;
+}
 
-export const AuthenticationProvider = ({children}:AuthenticationProviderProps): JSX.Element => {
-    const [user, setUser] = useState<boolean>(false);
+interface LoginData {
+    email: string;
+    passwordToVerify: string;
+}
+
+const AuthenticationContext = createContext({
+        user: null as User | null,
+        setUser: (user: User | null) => {
+        },
+        logout: () => {
+        },
+        login: (data: LoginData): Promise<boolean | undefined> | undefined => undefined
+    })
+;
+
+export const AuthenticationProvider = ({children}: AuthenticationProviderProps): JSX.Element => {
+    const [user, setUser] = useState<User | null>(null);
+
+    const api = useApi();
+
+    useEffect(() => {
+        verifyUserToken()
+            .then();
+    }, [])
+
+    const logout = async () => {
+        await deleteValueFor("userData");
+        setUser(null);
+    }
+
+    const login = async (data: LoginData): Promise<boolean | undefined> => {
+        try {
+            const resp = await api.post("users/login", data);
+            if (resp.status === 200) {
+                setUser(resp.data[0]);
+                await save("userData", JSON.stringify(resp.data[0]));
+                return true;
+            }
+            if (resp.status === 401) {
+                return false;
+            }
+            return false;
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    const verifyUserToken = async () => {
+        const userData = await getValueFor("userData");
+        if (userData) {
+            console.log("verify user data", JSON.parse(userData))
+            // TODO: fetch verify expiration user token
+            // TODO: get new token if expired
+            // Refresh user data
+            // TODO: fetch user data
+            // TODO: setUser(user)
+            // TODO: update user data in SecureStore
+        }
+    }
 
     return (
-        <AuthenticationContext.Provider value={{user, setUser}}>
+        <AuthenticationContext.Provider value={{user, setUser, logout, login}}>
             {children}
         </AuthenticationContext.Provider>
     );

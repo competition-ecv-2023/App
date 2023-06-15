@@ -1,15 +1,36 @@
-import {Button, Icon, Input, Layout, Text} from "@ui-kitten/components";
+import {Button, ButtonProps, Input, Layout, Spinner, Text} from "@ui-kitten/components";
 import ScreenContainer from "../components/ScreenContainer";
-import React, {useState} from "react";
-import {TouchableOpacity} from "react-native";
+import React, {useEffect, useState} from "react";
 import {Routes} from "../navigation/Route";
 import {ScreenProps} from "../interfaces/ScreenProps";
 import PasswordInput from "../components/PasswordInput";
+import {useAuthentication} from "../context/Authentication";
+import {ImageProps, View} from "react-native";
+
+const LoadingIndicator = (props: ImageProps): React.ReactElement => (
+    <View style={[props.style, {alignItems: "center", justifyContent: "center"}]}>
+        <Spinner size='small' />
+    </View>
+);
 
 const LoginScreen = ({navigation}: ScreenProps) => {
 
+    const {login} = useAuthentication();
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        return () => setLoading(false);
+    }, [])
+
+    const handleLogin = async () => {
+        setLoading(true);
+        const loginStatus: boolean = await login({email, passwordToVerify: password}) as boolean
+        if (!loginStatus) {
+            setLoading(false);
+        }
+    }
 
     return (
         <ScreenContainer withScroll>
@@ -36,8 +57,10 @@ const LoginScreen = ({navigation}: ScreenProps) => {
                 <Button
                     style={{marginBottom: 10}}
                     size={"large"}
-                    onPress={() => alert('Fetch login')}
-                    disabled={email.length === 0 || password.length <= 8}
+                    onPress={handleLogin}
+                    disabled={loading || email.length === 0 || password.length <= 8}
+                    // @ts-ignore
+                    accessoryLeft={loading ? LoadingIndicator : () => {}}
                 >
                     Me connecter
                 </Button>

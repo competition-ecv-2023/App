@@ -7,3 +7,7 @@ export const save = async(key: string, value: string) => {
 export const getValueFor = async(key: string) => {
     return await SecureStore.getItemAsync(key);
 }
+
+export const deleteValueFor = async(key: string) => {
+    await SecureStore.deleteItemAsync(key);
+}

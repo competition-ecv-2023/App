@@ -23,7 +23,7 @@ const Navigator = () => {
         <Stack.Navigator screenOptions={{headerShown: false}}>
             {
                 tutorialDone ? (
-                    !user ? (
+                    user ? (
                         <Stack.Screen name={"BOTTOM_STACK"} component={BottomTabNavigator}/>
                     ) : (
                         <Stack.Screen name={"AUTH_STACK"} component={AuthNavigator}/>
