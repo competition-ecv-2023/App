@@ -27,7 +27,9 @@ const queryClient = new QueryClient();
 export default function App() {
     const [fontsLoaded] = useFonts({
         'Sans-Poster-Bold': require('./assets/fonts/Sanspstb.ttf'),
-        'Work-Sans': require('./assets/fonts/WorkSans-VariableFont_wght.ttf')
+        'Work-Sans-900': require('./assets/fonts/WorkSans-Black.ttf'),
+        'Work-Sans-800': require('./assets/fonts/WorkSans-ExtraBold.ttf'),
+        'Work-Sans-500': require('./assets/fonts/WorkSans-Medium.ttf'),
     })
 
     const onLayoutRootView = useCallback(async () => {
