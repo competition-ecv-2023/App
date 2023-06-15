@@ -36,7 +36,7 @@ export const AuthenticationProvider = ({children}: AuthenticationProviderProps):
 
     useEffect(() => {
         verifyUserToken()
-            .then();
+            .catch(e => {});
     }, [])
 
     const logout = async () => {
@@ -65,6 +65,13 @@ export const AuthenticationProvider = ({children}: AuthenticationProviderProps):
         const userData = await getValueFor("userData");
         if (userData) {
             console.log("verify user data", JSON.parse(userData))
+
+            const userUpdatedData = await api.get(`users/${JSON.parse(userData).id}`);
+            if (userUpdatedData.status === 200) {
+                console.log(userUpdatedData.data)
+                setUser(userUpdatedData.data);
+                await save("userData", JSON.stringify(userUpdatedData.data));
+            }
             // TODO: fetch verify expiration user token
             // TODO: get new token if expired
             // Refresh user data
