@@ -10,8 +10,8 @@ import {Text} from "@ui-kitten/components";
 const MapScreen = () => {
 
     // @ts-ignore
-    const [location, setLocation] = useState<LocationObject|undefined>(undefined);
-    const [errorMsg, setErrorMsg] = useState<String|undefined>(undefined);
+    const [location, setLocation] = useState<LocationObject | undefined>(undefined);
+    const [errorMsg, setErrorMsg] = useState<String | undefined>(undefined);
 
     const [markerCoords, setMarkerCoords] = useState<LatLng>({latitude: 0, longitude: 0});
 
@@ -32,6 +32,11 @@ const MapScreen = () => {
     useEffect(() => {
         setMarkerCoords({latitude: location?.coords.latitude || 0, longitude: location?.coords.longitude || 0});
     }, [location]);
+
+    if (errorMsg) {
+        // @ts-ignore
+        return <Text>{errorMsg}</Text>
+    }
 
     if (!location) {
         return <Text>Loading ...</Text>
