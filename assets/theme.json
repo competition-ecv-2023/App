@@ -1,4 +1,9 @@
 {
   "text-font-family": "Work-Sans",
+  "background-basic-color-1": "#1B404E", //Background
+  "color-basic-200": "#55717AA3", //Input background
+  "border-basic-color-4": "transparent", //Input border color
+  "color-basic-600": "#698188", //Input text and icon color
+  "color-basic-800": "#FFF", //Text color
   "version": 2
 }

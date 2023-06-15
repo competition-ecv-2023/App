@@ -69,7 +69,7 @@ export const AuthenticationProvider = ({children}: AuthenticationProviderProps):
             const userUpdatedData = await api.get(`users/${JSON.parse(userData).id}`);
             if (userUpdatedData.status === 200) {
                 console.log(userUpdatedData.data)
-                setUser(userUpdatedData.data);
+                // setUser(userUpdatedData.data);
                 await save("userData", JSON.stringify(userUpdatedData.data));
             }
             // TODO: fetch verify expiration user token

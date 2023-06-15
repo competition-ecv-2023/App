@@ -6,6 +6,7 @@ import {ScreenProps} from "../interfaces/ScreenProps";
 import PasswordInput from "../components/PasswordInput";
 import {useAuthentication} from "../context/Authentication";
 import {ImageProps, View} from "react-native";
+import {Image} from "expo-image";
 
 export const LoadingIndicator = (props: ImageProps): React.ReactElement => (
     <View style={[props.style, {alignItems: "center", justifyContent: "center"}]}>
@@ -35,9 +36,14 @@ const LoginScreen = ({navigation}: ScreenProps) => {
     return (
         <ScreenContainer withScroll>
             <Layout style={{height: '50%', alignItems: "center", justifyContent: "center"}}>
-                <Text category={'h1'}>
-                    Pat'Perdue
-                </Text>
+                <Image
+                    source={require('../../assets/patperdue_logo.png')}
+                    style={{
+                        width: '75%',
+                        height: '100%',
+                    }}
+                    contentFit={'contain'}
+                />
             </Layout>
             <Layout style={{padding: 10, alignItems: "center", justifyContent: "space-evenly"}}>
                 <Input
