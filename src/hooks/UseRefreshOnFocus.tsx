@@ -10,7 +10,7 @@ export const useRefreshOnFocus = (refetch: () => Promise<any>) => {
                 return;
             }
 
-            alert("refetching");
+            console.log("refetching");
 
             refetch()
         }, [refetch])
