@@ -1,7 +1,7 @@
 import {Card, Modal, Text} from "@ui-kitten/components";
 import {Fragment, useState} from "react";
 import {StyleSheet, TouchableOpacity, View} from "react-native";
-import WhereSeparator from "./WhereSeparator";
+import OrSeparator from "./OrSeparator";
 
 interface ModalActionsItemProps {
     title: string;
@@ -42,7 +42,7 @@ const ModalActions = ({actions}: ModalActionsProps) => {
                             </TouchableOpacity>
                             {
                                 index === actions.length - 1 ? null : (
-                                   <WhereSeparator />
+                                   <OrSeparator />
                                 )
                             }
                         </Fragment>
