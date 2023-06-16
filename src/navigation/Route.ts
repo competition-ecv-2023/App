@@ -4,7 +4,7 @@ export const Routes = {
     TUTORIAL_SCREEN: "Tutoriel",
     LOGIN_SCREEN: "Connexion",
     REGISTER_SCREEN: "Inscription",
-    CODEVERIFICATION_SCREEN: "Vérification du code",
+    CODEVERIFICATION_SCREEN: "Confirmation d'inscription",
     MAP_SCREEN: "MapScreen",
     HOME_SCREEN: "HomeScreen",
 } as const;
