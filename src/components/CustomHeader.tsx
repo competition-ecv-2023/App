@@ -11,12 +11,12 @@ const BackIcon = (props: any): IconElement => (
         pack={'ionicons'}
     />
 );
-const CustomHeader = (props: NativeStackHeaderProps|BottomTabHeaderProps) => {
+const CustomHeader = (props: (NativeStackHeaderProps|BottomTabHeaderProps)&{backgroundColor?: string, textColor?: string}) => {
 
     return (
         <TopNavigation
-            title={evaProps => <Text {...evaProps} style={styles.title}>{props.route.name}</Text>}
-            style={styles.TopNavigation}
+            title={evaProps => <Text {...evaProps} style={{...styles.title, color: props.textColor}}>{props.route.name}</Text>}
+            style={{...styles.TopNavigation, backgroundColor: props.backgroundColor}}
             alignment="center"
             accessoryLeft={() => {
                 // @ts-ignore
@@ -26,7 +26,7 @@ const CustomHeader = (props: NativeStackHeaderProps|BottomTabHeaderProps) => {
                             icon={BackIcon}
                             onPress={() => props.navigation.goBack()}
                         />
-                    
+
                     )
                 }
                 return (<></>)
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
         marginTop: StatusBar.currentHeight,
         display: "flex",
         alignItems: "center",
+        backgroundColor: "transparent"
     }
 })
 

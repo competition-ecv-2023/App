@@ -1,6 +1,6 @@
 import ScreenContainer from "../components/ScreenContainer";
 import MapView, {Circle, LatLng, Marker} from "react-native-maps";
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import {useEffect, useState} from "react";
 
 import * as Location from 'expo-location';
@@ -57,6 +57,10 @@ const MapScreen = () => {
                     heading: 0,
                     pitch: 0
                 }}
+                loadingEnabled
+                loadingIndicatorColor={"red"}
+                provider={"google"}
+                showsPointsOfInterest
             >
                 <Marker
                     coordinate={{latitude: location?.coords.latitude || 0, longitude: location?.coords.longitude || 0}}
@@ -73,6 +77,7 @@ const styles = StyleSheet.create({
     map: {
         width: '100%',
         height: '100%',
+        marginTop: StatusBar.currentHeight
     },
 });
 export default MapScreen;

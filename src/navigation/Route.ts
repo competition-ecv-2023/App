@@ -7,4 +7,6 @@ export const Routes = {
     CODEVERIFICATION_SCREEN: "Vérification du code",
     MAP_SCREEN: "MapScreen",
     HOME_SCREEN: "HomeScreen",
+    PROFILE_SCREEN: "ProfileScreen",
+    ADD_ADVERT_SCREEN: "AddAdvertScreen",
 } as const;
