@@ -57,7 +57,7 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
         <ScreenContainer withScroll>
             <Layout style={{padding: 10}}>
                 <Input
-                    style={{marginBottom: 10}}
+                    style={{marginBottom: 10, borderRadius: 10}}
                     value={email}
                     onChangeText={newValue => setEmail(newValue)}
                     label="Email"
@@ -65,43 +65,61 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
                     caption={() => renderErrorCaption("email")}
                     status={errors["email"] ? "danger" : "basic"}
                     keyboardType={"email-address"}
+                    size="large"
+                    cursorColor={'white'}
                 />
                 <Input
-                    style={{marginBottom: 10}}
+                    style={{marginBottom: 10, borderRadius: 10}}
                     value={username}
                     onChangeText={newValue => setUsername(newValue)}
                     label="Pseudo"
                     placeholder="Votre username"
                     caption={() => renderErrorCaption("username")}
                     status={errors["username"] ? "danger" : "basic"}
+                    size="large"
+                    cursorColor={'white'}
                 />
                 <PasswordInput
-                    style={{marginBottom: 10}}
+                    style={{marginBottom: 10, borderRadius: 10}}
                     value={password}
                     onChangeText={newValue => setPassword(newValue)}
-                    label="Mot de passe"
+                    label="Mot de passe (8 caractères minimum)"
                     placeholder="Votre mot de passe"
                     caption={() => renderErrorCaption("password")}
                     status={errors["password"] ? "danger" : "basic"}
+                    size="large"
+                    cursorColor={'white'}
                 />
                 <PasswordInput
-                    style={{marginBottom: 10}}
+                    style={{marginBottom: 10, borderRadius: 10}}
                     value={passwordToVerify}
                     onChangeText={newValue => setPasswordToVerify(newValue)}
                     label="Confirmation du mot de passe"
                     placeholder="Confirmez votre mot de passe"
                     caption={() => renderErrorCaption("passwordToVerify")}
                     status={errors["passwordToVerify"] ? "danger" : "basic"}
+                    size="large"
+                    cursorColor={'white'}
                 />
                 <Button
-                    style={{marginBottom: 10}}
+                    style={{
+                        marginBottom: 10, 
+                        borderRadius: 10,
+                        backgroundColor: loading || email.length === 0 || username.length === 0 || password.length < 8 || password !== passwordToVerify
+                        ? '#55717AA3'
+                        : '#68A57D',
+                        borderColor: loading || email.length === 0 || username.length === 0 || password.length < 8 || password !== passwordToVerify
+                        ? '#55717AA3'
+                        : '#68A57D',
+                    }}
                     size={"large"}
                     onPress={handleRegister}
-                    disabled={loading || email.length === 0 || username.length === 0 || password.length <= 8 || password !== passwordToVerify}
+                    disabled={loading || email.length === 0 || username.length === 0 || password.length < 8 || password !== passwordToVerify}
                     // @ts-ignore
                     accessoryLeft={loading ? LoadingIndicator : () => {}}
+                    textStyle={{ color: loading || email.length === 0 || username.length === 0 || password.length < 8 || password !== passwordToVerify ? '#AAAAAA' : '#FFFFFF' }}
                 >
-                    Créer mon compte
+                    S'inscrire
                 </Button>
             </Layout>
         </ScreenContainer>

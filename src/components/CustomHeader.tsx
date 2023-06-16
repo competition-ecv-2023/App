@@ -1,6 +1,6 @@
 import {Icon, IconElement, Text, TopNavigation, TopNavigationAction} from "@ui-kitten/components";
 import React from "react";
-import {StatusBar} from "react-native";
+import {StatusBar, StyleSheet} from "react-native";
 import {NativeStackHeaderProps} from "@react-navigation/native-stack/lib/typescript/src/types";
 import {BottomTabHeaderProps} from "@react-navigation/bottom-tabs";
 
@@ -15,8 +15,9 @@ const CustomHeader = (props: NativeStackHeaderProps|BottomTabHeaderProps) => {
 
     return (
         <TopNavigation
-            title={evaProps => <Text {...evaProps} style={{fontWeight: "700"}}>{props.route.name}</Text>}
-            style={{paddingTop: StatusBar.currentHeight}}
+            title={evaProps => <Text {...evaProps} style={styles.title}>{props.route.name}</Text>}
+            style={styles.TopNavigation}
+            alignment="center"
             accessoryLeft={() => {
                 // @ts-ignore
                 if (props.back) {
@@ -25,11 +26,25 @@ const CustomHeader = (props: NativeStackHeaderProps|BottomTabHeaderProps) => {
                             icon={BackIcon}
                             onPress={() => props.navigation.goBack()}
                         />
+                    
                     )
                 }
                 return (<></>)
             }}/>
     )
 }
+
+
+const styles = StyleSheet.create({
+    title: {
+        fontWeight: "700",
+        fontSize: 25,
+    },
+    TopNavigation: {
+        marginTop: StatusBar.currentHeight,
+        display: "flex",
+        alignItems: "center",
+    }
+})
 
 export default CustomHeader;

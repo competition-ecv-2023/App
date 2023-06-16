@@ -47,29 +47,42 @@ const LoginScreen = ({navigation}: ScreenProps) => {
             </Layout>
             <Layout style={{padding: 10, alignItems: "center", justifyContent: "space-evenly"}}>
                 <Input
-                    style={{marginBottom: 10}}
+                    style={{marginBottom: 10, borderRadius: 10}}
+                    size={"large"}
                     value={email}
                     onChangeText={newValue => setEmail(newValue)}
                     label="Email"
                     placeholder="Votre email"
                     keyboardType={"email-address"}
+                    cursorColor={'white'}
                 />
                 <PasswordInput
-                    style={{marginBottom: 10}}
+                    style={{marginBottom: 20, borderRadius: 10}}
+                    size={"large"}
                     value={password}
                     label="Mot de passe"
                     placeholder="Mot de passe"
                     onChangeText={newValue => setPassword(newValue)}
+                    cursorColor={'white'}
                 />
                 <Button
-                    style={{marginBottom: 10}}
+                    style={{
+                        marginBottom: 10,
+                        borderRadius: 10,
+                        width: "100%",
+                        backgroundColor: loading || email.length === 0 || password.length < 8
+                        ? '#55717AA3'
+                        : '#68A57D',
+                        borderColor: loading || email.length === 0 || password.length < 8
+                        ? '#55717AA3'
+                        : '#68A57D'}}
                     size={"large"}
                     onPress={handleLogin}
-                    disabled={loading || email.length === 0 || password.length <= 8}
+                    disabled={loading || email.length === 0 || password.length < 8}
                     // @ts-ignore
                     accessoryLeft={loading ? LoadingIndicator : () => {}}
                 >
-                    Me connecter
+                    Se connecter
                 </Button>
                 <Text category={'label'} onPress={() => navigation.navigate(Routes.REGISTER_SCREEN)}>
                     Pas encore de compte ? <Text style={{textDecorationLine: "underline"}}>Inscrivez-vous</Text>
