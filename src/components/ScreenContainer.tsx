@@ -8,12 +8,12 @@ interface AuthenticationProviderProps {
     backgroundColor?: string;
 }
 
-const ScreenContainer = ({children, withScroll = false, backgroundColor}: AuthenticationProviderProps) => {
+const ScreenContainer = ({children, withScroll = false, backgroundColor = 'white'}: AuthenticationProviderProps) => {
 
     if (withScroll) {
         return (
-            <ScrollView style={{...styles.container, backgroundColor}} contentContainerStyle={{flex: 1}} nestedScrollEnabled>
-                <Layout style={{height: '100%', backgroundColor: "transparent"}}>
+            <ScrollView style={{...styles.container, backgroundColor}} nestedScrollEnabled>
+                <Layout style={{height: "100%", backgroundColor: "transparent"}}>
                     {children}
                 </Layout>
             </ScrollView>
