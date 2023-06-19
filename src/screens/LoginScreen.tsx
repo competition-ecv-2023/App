@@ -36,7 +36,7 @@ const LoginScreen = ({navigation}: ScreenProps) => {
     }
 
     return (
-        <ScreenContainer withScroll>
+        <ScreenContainer withScroll backgroundColor={'#1B404E'}>
             <Layout style={{height: '35%', alignItems: "center", justifyContent: "center"}}>
                 <Image
                     source={require('../../assets/patperdue_logo.png')}

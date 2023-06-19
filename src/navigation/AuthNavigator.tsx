@@ -23,12 +23,13 @@ const AuthNavigator = ({navigation}: NativeStackScreenProps<any>) => {
         <Stack.Navigator
             initialRouteName={Routes.LOGIN_SCREEN}
             screenOptions={{
-                headerShown: false
+                headerShown: false,
+                header: (props) => <CustomHeader {...props} backgroundColor={"#1B404E"} textColor={"white"}/>
             }}
         >
             <Stack.Screen name={Routes.LOGIN_SCREEN} component={LoginScreen} />
-            <Stack.Screen name={Routes.REGISTER_SCREEN} component={RegisterScreen} options={{headerShown: true, header: CustomHeader}}/>
-            <Stack.Screen name={Routes.CODEVERIFICATION_SCREEN} component={CodeVerificationScreen} options={{headerShown: true, header: CustomHeader}} />
+            <Stack.Screen name={Routes.REGISTER_SCREEN} component={RegisterScreen} options={{headerShown: true}}/>
+            <Stack.Screen name={Routes.CODEVERIFICATION_SCREEN} component={CodeVerificationScreen} options={{headerShown: true}} />
             <Stack.Screen name={Routes.TUTORIAL_SCREEN} component={TutorialScreen} />
         </Stack.Navigator>
     );

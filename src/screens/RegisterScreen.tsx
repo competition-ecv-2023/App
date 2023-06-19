@@ -56,7 +56,7 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
     )
 
     return (
-        <ScreenContainer withScroll>
+        <ScreenContainer withScroll backgroundColor={'#1B404E'}>
             <Layout style={{padding: 10}}>
                 <Input
                     style={{marginBottom: 10, borderRadius: 10}}
@@ -105,7 +105,7 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
                 />
                 <Button
                     style={{
-                        marginBottom: 10, 
+                        marginBottom: 10,
                         borderRadius: 10,
                         backgroundColor: loading || email.length === 0 || username.length === 0 || password.length < 8 || password !== passwordToVerify
                         ? '#55717AA3'

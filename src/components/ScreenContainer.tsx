@@ -5,14 +5,15 @@ import {Layout} from "@ui-kitten/components";
 interface AuthenticationProviderProps {
     children: React.ReactNode;
     withScroll?: boolean;
+    backgroundColor?: string;
 }
 
-const ScreenContainer = ({children, withScroll = false}: AuthenticationProviderProps) => {
+const ScreenContainer = ({children, withScroll = false, backgroundColor}: AuthenticationProviderProps) => {
 
     if (withScroll) {
         return (
-            <ScrollView style={styles.container} contentContainerStyle={{flex: 1}}>
-                <Layout style={{height: '100%', backgroundColor: "#fff"}}>
+            <ScrollView style={{...styles.container, backgroundColor}} contentContainerStyle={{flex: 1}} nestedScrollEnabled>
+                <Layout style={{height: '100%', backgroundColor: "transparent"}}>
                     {children}
                 </Layout>
             </ScrollView>
@@ -21,9 +22,9 @@ const ScreenContainer = ({children, withScroll = false}: AuthenticationProviderP
 
     return (
         <SafeAreaView
-            style={styles.container}
+            style={{...styles.container, backgroundColor}}
         >
-            <Layout style={{flex: 1, backgroundColor: "#fff"}}>
+            <Layout style={{flex: 1, backgroundColor: "transparent"}}>
                 {children}
             </Layout>
         </SafeAreaView>
@@ -33,7 +34,6 @@ const ScreenContainer = ({children, withScroll = false}: AuthenticationProviderP
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red'
     }
 })
 
