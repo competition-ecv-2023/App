@@ -47,6 +47,7 @@ export const AuthenticationProvider = ({children}: AuthenticationProviderProps):
     const login = async (data: LoginData): Promise<boolean | undefined> => {
         try {
             const resp = await api.post("users/login", data);
+            console.log(resp)
             if (resp.status === 200) {
                 setUser(resp.data[0]);
                 await save("userData", JSON.stringify(resp.data[0]));
@@ -67,7 +68,7 @@ export const AuthenticationProvider = ({children}: AuthenticationProviderProps):
             const userUpdatedData = await api.get(`users/${JSON.parse(userData).id}`);
             if (userUpdatedData.status === 200) {
                 console.log(userUpdatedData.data)
-                // setUser(userUpdatedData.data);
+                setUser(userUpdatedData.data);
                 await save("userData", JSON.stringify(userUpdatedData.data));
             }
         }

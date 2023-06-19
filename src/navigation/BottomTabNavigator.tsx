@@ -4,6 +4,7 @@ import MapScreen from "../screens/MapScreen";
 import CustomTabBar from "../components/CustomTabBar";
 import HomeScreen from "../screens/HomeScreen";
 import CustomHeader from "../components/CustomHeader";
+import AdvertCreation from "../screens/AdvertCreation";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ const BottomTabNavigator = () => {
             <Tab.Screen name={Routes.HOME_SCREEN} component={HomeScreen}/>
             <Tab.Screen name={Routes.MAP_SCREEN} component={MapScreen} options={{headerShown: false}}/>
             <Tab.Screen name={Routes.PROFILE_SCREEN} component={TempComponent}/>
-            <Tab.Screen name={Routes.ADD_ADVERT_SCREEN} component={TempComponent}/>
+            <Tab.Screen name={Routes.ADD_ADVERT_SCREEN} component={AdvertCreation}/>
 
         </Tab.Navigator>
     )
