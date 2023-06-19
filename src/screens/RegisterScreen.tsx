@@ -7,6 +7,8 @@ import {LoadingIndicator} from "./LoginScreen";
 import {AxiosError} from "axios";
 import {useApi} from "../hooks/UseApi";
 import {Routes} from "../navigation/Route";
+import OrSeparator from "../components/OrSeparator";
+import PatPerdueButton from "../components/PatPerdueButton";
 
 interface RegisterErrors {
     email?: string;
@@ -121,6 +123,10 @@ const RegisterScreen = ({navigation}: ScreenProps) => {
                 >
                     S'inscrire
                 </Button>
+                <OrSeparator color="#fff"/>
+                <PatPerdueButton title="Se connecter" backgroundColor="#68A57D" onPress={() => navigation.navigate(Routes.LOGIN_SCREEN)}/>
+                <PatPerdueButton title="Se connecter avec Google" backgroundColor="#55717AA3"/>
+                <PatPerdueButton title="Se connecter avec Facebook" backgroundColor="#55717AA3"/>
             </Layout>
         </ScreenContainer>
     )

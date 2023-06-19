@@ -7,6 +7,8 @@ import PasswordInput from "../components/PasswordInput";
 import {useAuthentication} from "../context/Authentication";
 import {ImageProps, View} from "react-native";
 import {Image} from "expo-image";
+import OrSeparator from "../components/OrSeparator";
+import PatPerdueButton from "../components/PatPerdueButton";
 
 export const LoadingIndicator = (props: ImageProps): React.ReactElement => (
     <View style={[props.style, {alignItems: "center", justifyContent: "center"}]}>
@@ -35,7 +37,7 @@ const LoginScreen = ({navigation}: ScreenProps) => {
 
     return (
         <ScreenContainer withScroll>
-            <Layout style={{height: '50%', alignItems: "center", justifyContent: "center"}}>
+            <Layout style={{height: '35%', alignItems: "center", justifyContent: "center"}}>
                 <Image
                     source={require('../../assets/patperdue_logo.png')}
                     style={{
@@ -87,6 +89,9 @@ const LoginScreen = ({navigation}: ScreenProps) => {
                 <Text category={'label'} onPress={() => navigation.navigate(Routes.REGISTER_SCREEN)}>
                     Pas encore de compte ? <Text style={{textDecorationLine: "underline"}}>Inscrivez-vous</Text>
                 </Text>
+                <OrSeparator color="#fff"/>
+                <PatPerdueButton title="Se connecter avec Google" backgroundColor="#55717AA3"/>
+                <PatPerdueButton title="Se connecter avec Facebook" backgroundColor="#55717AA3"/>
             </Layout>
         </ScreenContainer>
     )
