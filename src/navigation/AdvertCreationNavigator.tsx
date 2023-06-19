@@ -3,6 +3,7 @@ import AdvertDataScreen from "../screens/AdvertDataScreen";
 import {Routes} from "./Route";
 import {useEffect, useState} from "react";
 import CreateAdvertContext, {AdvertPropsType} from "../context/CreateAdvertContext";
+import AdvertConfirmation from "../screens/AdvertConfirmation";
 import CustomHeader from "../components/CustomHeader";
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,7 @@ const AdvertCreationNavigator = () => {
                 header: (props) => <CustomHeader {...props} backgroundColor={"white"} textColor={"#1B404E"}/>
             }}>
                 <Stack.Screen name={Routes.ADVERT_DATA_SCREEN} component={AdvertDataScreen} options={{headerShown: true}}/>
+                <Stack.Screen name={Routes.ADVERT_CONFIRMATION} component={AdvertConfirmation}/>
             </Stack.Navigator>
         </CreateAdvertContext.Provider>
     )

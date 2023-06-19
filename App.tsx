@@ -47,7 +47,7 @@ export default function App() {
         return (
             <View style={{flex: 1}} onLayout={onLayoutRootView}>
                 <IconRegistry icons={[FeatherIconsPack, IoniconsIconsPack]}/>
-                <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
+                <ApplicationProvider {...eva} theme={{...eva.light}}>
                     <QueryClientProvider client={queryClient}>
                         <NavigationContainer>
                             <AuthenticationProvider>

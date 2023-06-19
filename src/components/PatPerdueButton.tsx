@@ -5,6 +5,7 @@ interface PatPerdueButtonProps {
     onPress?: () => void;
     title: string;
     backgroundColor?: string;
+    style?: object;
 }
 
 const PatPerdueButton = ({title, backgroundColor, onPress}: PatPerdueButtonProps) => {
@@ -23,9 +24,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignSelf: "center",
         fontFamily: "Work-Sans-800",
-        fontSize: 20,
-        borderColor: "transparent",
-        marginTop: 10,
+        fontSize: 20
     }
 })
 
