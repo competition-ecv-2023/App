@@ -8,6 +8,6 @@ export const Routes = {
     MAP_SCREEN: "MapScreen",
     HOME_SCREEN: "HomeScreen",
     PROFILE_SCREEN: "ProfileScreen",
-    ADVERT_DATA_SCREEN: "AdvertDataScreen",
+    ADVERT_DATA_SCREEN: "Ajouter une annonce",
     ADVERT_NAVIGATOR: "AdvertNavigator",
 } as const;
