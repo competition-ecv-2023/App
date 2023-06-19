@@ -10,4 +10,5 @@ export const Routes = {
     PROFILE_SCREEN: "ProfileScreen",
     ADVERT_DATA_SCREEN: "AdvertDataScreen",
     ADVERT_NAVIGATOR: "AdvertNavigator",
+    ADVERT_CONFIRMATION: "AdvertConfirmation"
 } as const;

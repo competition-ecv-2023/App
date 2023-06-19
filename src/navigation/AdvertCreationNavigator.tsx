@@ -3,6 +3,7 @@ import AdvertDataScreen from "../screens/AdvertDataScreen";
 import {Routes} from "./Route";
 import {useState} from "react";
 import CreateAdvertContext, {AdvertPropsType} from "../context/CreateAdvertContext";
+import AdvertConfirmation from "../screens/AdvertConfirmation";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const AdvertCreationNavigator = () => {
         <CreateAdvertContext.Provider value={{advert, setAdvert}}>
             <Stack.Navigator>
                 <Stack.Screen name={Routes.ADVERT_DATA_SCREEN} component={AdvertDataScreen}/>
+                <Stack.Screen name={Routes.ADVERT_CONFIRMATION} component={AdvertConfirmation}/>
             </Stack.Navigator>
         </CreateAdvertContext.Provider>
     )
