@@ -7,4 +7,6 @@ export const Routes = {
     CODEVERIFICATION_SCREEN: "Confirmation d'inscription",
     MAP_SCREEN: "MapScreen",
     HOME_SCREEN: "HomeScreen",
+    PROFILE_SCREEN: "ProfileScreen",
+    ADD_ADVERT_SCREEN: "AddAdvertScreen",
 } as const;

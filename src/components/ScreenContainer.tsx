@@ -12,7 +12,7 @@ const ScreenContainer = ({children, withScroll = false}: AuthenticationProviderP
     if (withScroll) {
         return (
             <ScrollView style={styles.container} contentContainerStyle={{flex: 1}}>
-                <Layout style={{height: '100%'}}>
+                <Layout style={{height: '100%', backgroundColor: "#fff"}}>
                     {children}
                 </Layout>
             </ScrollView>
@@ -23,7 +23,7 @@ const ScreenContainer = ({children, withScroll = false}: AuthenticationProviderP
         <SafeAreaView
             style={styles.container}
         >
-            <Layout style={{flex: 1}}>
+            <Layout style={{flex: 1, backgroundColor: "#fff"}}>
                 {children}
             </Layout>
         </SafeAreaView>
@@ -32,7 +32,8 @@ const ScreenContainer = ({children, withScroll = false}: AuthenticationProviderP
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'red'
     }
 })
 
