@@ -48,7 +48,7 @@ const getTabIcon = (routeName: string) => {
             return "map";
         case Routes.PROFILE_SCREEN:
             return "user";
-        case Routes.ADD_ADVERT_SCREEN:
+        case Routes.ADVERT_NAVIGATOR:
             return "calendar";
         default:
             return "minus";
