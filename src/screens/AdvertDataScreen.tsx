@@ -63,6 +63,13 @@ const AdvertDataScreen = ({navigation}: NativeStackScreenProps<any>) => {
         updateAdvertField("images", result.assets);
     }
 
+    const deleteImage = (image: any) => {
+        const oldImages = advert.images;
+        // @ts-ignore
+        const newImages = oldImages.filter((img) => img.uri !== image.uri);
+        updateAdvertField("images", newImages);
+    }
+
     return (
         <ScreenContainer withScroll>
             <Layout style={styles.container}>
@@ -118,15 +125,7 @@ const AdvertDataScreen = ({navigation}: NativeStackScreenProps<any>) => {
                     <Text style={{color: '#848484'}}>{advert.images.length} / 4</Text>
                 </TouchableOpacity>
                 <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
-                    {advert.images.map((image: any, idx: number) => (
-                        <View style={{width: '50%', height: 100, padding: 2}}>
-                            <Image
-                                key={idx}
-                                source={{uri: image.uri}}
-                                style={{width: '100%', height: '100%'}}
-                            />
-                        </View>
-                    ))}
+                    {advert.images.map((image, idx) => renderImage(image, idx, deleteImage))}
                 </View>
                 <Input
                     placeholder={"Numéro d'identification"}
@@ -148,6 +147,23 @@ const AdvertDataScreen = ({navigation}: NativeStackScreenProps<any>) => {
                 <OutlineButton title={"Suivant"} onPress={() => navigation.navigate(Routes.ADVERT_LOCALISATION)}/>
             </Layout>
         </ScreenContainer>
+    )
+}
+
+const renderImage = (image: any, idx: number, deleteImage: (image: any) => void) => {
+    return (
+        <TouchableOpacity
+            key={idx}
+            style={{width: '50%', height: 100, padding: 2}}
+            activeOpacity={0.6}
+            onPress={() => deleteImage(image)}
+        >
+            <Image
+                source={{uri: image.uri}}
+                style={{width: '100%', height: '100%'}}
+                contentPosition={"top center"}
+            />
+        </TouchableOpacity>
     )
 }
 

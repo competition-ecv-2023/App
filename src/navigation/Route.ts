@@ -6,7 +6,7 @@ export const Routes = {
     REGISTER_SCREEN: "Inscription",
     CODEVERIFICATION_SCREEN: "Confirmation d'inscription",
     MAP_SCREEN: "MapScreen",
-    HOME_SCREEN: "HomeScreen",
+    HOME_SCREEN: "Les annonces",
     PROFILE_SCREEN: "ProfileScreen",
     ADVERT_DATA_SCREEN: "Ajouter une annonce",
     ADVERT_NAVIGATOR: "AdvertNavigator",

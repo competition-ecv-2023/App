@@ -16,7 +16,7 @@ const BottomTabNavigator = () => {
                 headerShown: false,
                 header: (props) => <CustomHeader {...props} backgroundColor={"white"} textColor={"#1B404E"}/>
             }}>
-                <Tab.Screen name={Routes.HOME_SCREEN} component={HomeScreen}/>
+                <Tab.Screen name={Routes.HOME_SCREEN} component={HomeScreen} options={{headerShown: true}}/>
                 <Tab.Screen name={Routes.MAP_SCREEN} component={MapScreen}/>
                 <Tab.Screen name={Routes.PROFILE_SCREEN} component={TempComponent}/>
                 <Tab.Screen name={Routes.ADVERT_NAVIGATOR} component={AdvertCreationNavigator}/>

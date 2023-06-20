@@ -13,6 +13,7 @@ export interface AdvertPropsType {
     latitude: number;
     isPremium: boolean;
     isGoogleAds: boolean;
+    advert_images?: string[];
 }
 
 export default createContext({

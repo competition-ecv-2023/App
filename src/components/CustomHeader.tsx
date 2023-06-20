@@ -37,7 +37,7 @@ const CustomHeader = (props: (NativeStackHeaderProps|BottomTabHeaderProps)&{back
 
 const styles = StyleSheet.create({
     title: {
-        fontWeight: "700",
+        fontFamily: "Work-Sans-900",
         fontSize: 25,
     },
     TopNavigation: {

@@ -30,6 +30,7 @@ export default function App() {
         'Work-Sans-900': require('./assets/fonts/WorkSans-Black.ttf'),
         'Work-Sans-800': require('./assets/fonts/WorkSans-ExtraBold.ttf'),
         'Work-Sans-700': require('./assets/fonts/WorkSans-Bold.ttf'),
+        'Work-Sans-600': require('./assets/fonts/WorkSans-SemiBold.ttf'),
         'Work-Sans-500': require('./assets/fonts/WorkSans-Medium.ttf'),
     })
 
