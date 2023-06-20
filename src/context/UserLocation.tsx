@@ -16,17 +16,20 @@ export const UserLocationProvider = ({ children }: UserLocationProviderProps): J
     const [location, setLocation] = useState<LocationObject | undefined>(undefined);
     const [errorMsg, setErrorMsg] = useState<String | undefined>(undefined);
 
-    useEffect(() => {
-        (async () => {
-            let {status} = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
+    const getLocation = async () => {
+        let {status} = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
+        }
 
-            let location = await Location.getCurrentPositionAsync({});
+        await Location.watchPositionAsync({timeInterval: 500}, (location) => {
             setLocation(location);
-        })();
+        });
+    };
+
+    useEffect(() => {
+        getLocation();
     }, []);
 
     useEffect(() => {

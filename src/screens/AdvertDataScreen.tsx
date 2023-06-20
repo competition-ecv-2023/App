@@ -1,16 +1,16 @@
 import ScreenContainer from "../components/ScreenContainer";
-import {Button, Icon, Input, Layout, Text} from "@ui-kitten/components";
+import {Icon, Input, Layout, Text} from "@ui-kitten/components";
 import {default as animalsTypes} from "../../assets/animals.json";
 import React, {ReactElement, useContext, useState} from "react";
-import {StatusBar, StyleSheet, TouchableOpacity, View} from "react-native";
+import {FlatList, StatusBar, StyleSheet, TouchableOpacity, View} from "react-native";
 import Autocomplete from 'react-native-autocomplete-input';
 import CreateAdvertContext from "../context/CreateAdvertContext";
 import * as ImagePicker from 'expo-image-picker';
 import {useApi} from "../hooks/UseApi";
-import {AxiosError} from "axios";
 import OutlineButton from "../components/OutlineButton";
 import {Routes} from "../navigation/Route";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {Image} from "expo-image";
 
 const filter = (item: {
     animalType: string
@@ -57,6 +57,8 @@ const AdvertDataScreen = ({navigation}: NativeStackScreenProps<any>) => {
             base64: true,
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: false,
+            allowsMultipleSelection: true,
+            selectionLimit: 4
         });
         updateAdvertField("images", result.assets);
     }
@@ -102,11 +104,30 @@ const AdvertDataScreen = ({navigation}: NativeStackScreenProps<any>) => {
                     size={"large"}
                 />
                 <TouchableOpacity
-                    style={{...styles.input, paddingVertical: 15, paddingHorizontal: 10, borderRadius: 5}}
+                    style={{
+                        ...styles.input,
+                        paddingVertical: 15,
+                        paddingHorizontal: 10,
+                        borderRadius: 5,
+                        flexDirection: "row",
+                        justifyContent: "space-between"
+                    }}
                     onPress={pickImage}
                 >
                     <Text style={{color: '#848484'}}>Ajouter des photos de votre animal</Text>
+                    <Text style={{color: '#848484'}}>{advert.images.length} / 4</Text>
                 </TouchableOpacity>
+                <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+                    {advert.images.map((image: any, idx: number) => (
+                        <View style={{width: '50%', height: 100, padding: 2}}>
+                            <Image
+                                key={idx}
+                                source={{uri: image.uri}}
+                                style={{width: '100%', height: '100%'}}
+                            />
+                        </View>
+                    ))}
+                </View>
                 <Input
                     placeholder={"Numéro d'identification"}
                     style={styles.input}

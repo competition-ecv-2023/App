@@ -50,11 +50,11 @@ const AdvertCreationNavigator = () => {
     const formatData = () => {
         const data = {};
         Object.keys(advert).forEach(key => {
-            // @ts-ignore
             if (key !== "images") {
+                // @ts-ignore
                 data[camelToSnake(key)] = advert[key];
             } else {
-                // data[camelToSnake(key)] = advert[key].map((picture: any) => picture.base64)
+                // @ts-ignore
                 data["images"] = advert.images.map((picture: any) => picture.base64)
             }
         })
@@ -71,9 +71,12 @@ const AdvertCreationNavigator = () => {
                 headerShown: false,
                 header: (props) => <CustomHeader {...props} backgroundColor={"white"} textColor={"#1B404E"}/>
             }}>
-                <Stack.Screen name={Routes.ADVERT_DATA_SCREEN} component={AdvertDataScreen} options={{headerShown: true}}/>
-                <Stack.Screen name={Routes.ADVERT_LOCALISATION} component={AdvertLocalisationScreen} options={{headerShown: true}}/>
-                <Stack.Screen name={Routes.ADVERT_CONFIRMATION} component={AdvertConfirmation} options={{headerShown: true}}/>
+                <Stack.Screen name={Routes.ADVERT_DATA_SCREEN} component={AdvertDataScreen}
+                              options={{headerShown: true}}/>
+                <Stack.Screen name={Routes.ADVERT_LOCALISATION} component={AdvertLocalisationScreen}
+                              options={{headerShown: true}}/>
+                <Stack.Screen name={Routes.ADVERT_CONFIRMATION} component={AdvertConfirmation}
+                              options={{headerShown: true, headerBackTitleVisible: false}}/>
             </Stack.Navigator>
         </CreateAdvertContext.Provider>
     )

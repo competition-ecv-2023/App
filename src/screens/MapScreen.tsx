@@ -1,6 +1,6 @@
 import ScreenContainer from "../components/ScreenContainer";
 import MapView from "react-native-maps";
-import {StatusBar, StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {Text} from "@ui-kitten/components";
 import {useUserLocation} from "../context/UserLocation";
 
@@ -33,10 +33,7 @@ const MapScreen = () => {
                 }}
                 loadingEnabled
                 loadingIndicatorColor={"red"}
-                provider={"google"}
-                showsPointsOfInterest
-            >
-            </MapView>
+            />
         </ScreenContainer>
     )
 }
