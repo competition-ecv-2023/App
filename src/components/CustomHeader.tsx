@@ -1,21 +1,30 @@
-import {Icon, IconElement, Text, TopNavigation, TopNavigationAction} from "@ui-kitten/components";
-import React from "react";
+import {IconElement, Text, TopNavigation, TopNavigationAction} from "@ui-kitten/components";
+import React, {useEffect} from "react";
 import {StatusBar, StyleSheet} from "react-native";
 import {NativeStackHeaderProps} from "@react-navigation/native-stack/lib/typescript/src/types";
 import {BottomTabHeaderProps} from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const BackIcon = (props: any): IconElement => (
+export const BackIcon = (props: any): React.ReactElement => (
     <Icon
-        {...props}
+        size={25}
         name='arrow-back'
-        pack={'ionicons'}
+        color={"black"}
     />
 );
-const CustomHeader = (props: (NativeStackHeaderProps|BottomTabHeaderProps)&{backgroundColor?: string, textColor?: string}) => {
+const CustomHeader = (props: (NativeStackHeaderProps | BottomTabHeaderProps) & {
+    backgroundColor?: string,
+    textColor?: string
+}) => {
 
     return (
         <TopNavigation
-            title={evaProps => <Text {...evaProps} style={{...styles.title, color: props.textColor}}>{props.route.name}</Text>}
+            title={evaProps =>
+                <Text {...evaProps} style={{...styles.title, color: props.textColor}}>
+                    {/* @ts-ignore */}
+                    {props.options.headerTitle ?? props.route.name}
+                </Text>
+            }
             style={{...styles.TopNavigation, backgroundColor: props.backgroundColor}}
             alignment="center"
             accessoryLeft={() => {
@@ -26,7 +35,6 @@ const CustomHeader = (props: (NativeStackHeaderProps|BottomTabHeaderProps)&{back
                             icon={BackIcon}
                             onPress={() => props.navigation.goBack()}
                         />
-
                     )
                 }
                 return (<></>)

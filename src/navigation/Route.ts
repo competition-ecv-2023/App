@@ -12,4 +12,5 @@ export const Routes = {
     ADVERT_NAVIGATOR: "AdvertNavigator",
     ADVERT_CONFIRMATION: "AdvertConfirmation",
     ADVERT_LOCALISATION: "Localisation",
+    ADVERT_SCREEN: "AdvertScreen"
 } as const;

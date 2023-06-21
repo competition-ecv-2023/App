@@ -2,6 +2,7 @@ import {BottomTabBarProps} from "@react-navigation/bottom-tabs";
 import {BottomNavigation, BottomNavigationTab, Icon} from "@ui-kitten/components";
 import {Routes} from "../navigation/Route";
 import {StyleSheet} from "react-native";
+import {Fragment} from "react";
 
 const CustomTabBar = ({state, navigation}: BottomTabBarProps) => (
     <BottomNavigation
@@ -10,14 +11,17 @@ const CustomTabBar = ({state, navigation}: BottomTabBarProps) => (
         style={styles.container}
         appearance={"noIndicator"}
     >
-        {state.routes.map((route, index) => (
-            <BottomNavigationTab
-                key={index}
-                icon={(props) => <Icon {...props} name={getTabIcon(route.name)}
-                                       style={{...styles.tabIcon, ...(state.index === index ? styles.tabIconSelected : {})}}/>}
-                style={{...styles.tab, ...(state.index === index ? styles.selectedTab : {})}}
-            />
-        ))}
+        {state.routes.map((route, index) => {
+            if (route.name === Routes.ADVERT_SCREEN) return <Fragment key={index}></Fragment>
+            return (
+                <BottomNavigationTab
+                    key={index}
+                    icon={(props) => <Icon {...props} name={getTabIcon(route.name)}
+                                           style={{...styles.tabIcon, ...(state.index === index ? styles.tabIconSelected : {})}}/>}
+                    style={{...styles.tab, ...(state.index === index ? styles.selectedTab : {})}}
+                />
+            )
+        })}
     </BottomNavigation>
 )
 

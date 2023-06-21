@@ -6,6 +6,7 @@ import HomeScreen from "../screens/HomeScreen";
 import CustomHeader from "../components/CustomHeader";
 import AdvertCreationNavigator from "./AdvertCreationNavigator";
 import {UserLocationProvider} from "../context/UserLocation";
+import AdvertScreen from "../screens/AdvertScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +21,7 @@ const BottomTabNavigator = () => {
                 <Tab.Screen name={Routes.MAP_SCREEN} component={MapScreen}/>
                 <Tab.Screen name={Routes.PROFILE_SCREEN} component={TempComponent}/>
                 <Tab.Screen name={Routes.ADVERT_NAVIGATOR} component={AdvertCreationNavigator}/>
+                <Tab.Screen name={Routes.ADVERT_SCREEN} component={AdvertScreen} />
             </Tab.Navigator>
         </UserLocationProvider>
     )

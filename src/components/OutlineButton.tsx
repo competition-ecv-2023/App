@@ -9,7 +9,7 @@ interface OutlineButtonProps {
 const OutlineButton = ({onPress, title}: OutlineButtonProps) => {
 
     return (
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={onPress} style={{padding: 10}}>
             <Text style={styles.button}>{title}</Text>
         </TouchableOpacity>
     )
@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
         color: "#F19B3F",
         borderRadius: 8,
         textAlign: "center",
-        fontWeight: "900",
+        fontFamily: "Work-Sans-900",
+        fontSize: 16,
         padding: 15,
         marginTop: 20,
         marginBottom: 20,

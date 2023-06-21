@@ -2,17 +2,24 @@ import {StyleSheet, TouchableOpacity, View} from "react-native";
 import {Image} from "expo-image";
 import {API_ADDRESS} from "../hooks/UseApi";
 import {Text} from "@ui-kitten/components";
+import {Routes} from "../navigation/Route";
+import {NavigationProp} from "@react-navigation/native";
 
-const Advert = ({item, index}: {item: any, index: number}) => {
+const Advert = ({item, index, navigation}: { item: any, index: number, navigation: any}) => {
+
     const calcTime = () => {
-        const time = (Date.now() - Date.parse(item["start_date"]))/3600000;
+        const time = (Date.now() - Date.parse(item["start_date"])) / 3600000;
         const hours = Math.floor(time);
         const minutes = Math.floor((time - hours) * 60);
         return `${hours}h ${minutes}min`;
     }
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity
+            style={styles.container}
+            // @ts-ignore
+            onPress={() => navigation.navigate(Routes.ADVERT_SCREEN, {animal: item})}
+        >
             <Image
                 source={{uri: API_ADDRESS + JSON.parse(item["advert_images"])[0]}}
                 style={styles.image}

@@ -6,8 +6,9 @@ import {useQuery} from "@tanstack/react-query";
 import {useApi} from "../hooks/UseApi";
 import {FlatList, RefreshControl} from "react-native";
 import Advert from "../components/Advert";
+import {BottomTabScreenProps} from "@react-navigation/bottom-tabs";
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: BottomTabScreenProps<any>) => {
     const api = useApi();
 
     // Get adverts
@@ -45,7 +46,7 @@ const HomeScreen = () => {
             <Text>Accueil</Text>
             <FlatList
                 data={query.data}
-                renderItem={Advert}
+                renderItem={({item, index}) => <Advert item={item} index={index} navigation={navigation} />}
                 refreshControl={
                     <RefreshControl
                         refreshing={query.isFetching}
