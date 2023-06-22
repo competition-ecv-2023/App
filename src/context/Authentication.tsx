@@ -67,7 +67,6 @@ export const AuthenticationProvider = ({children}: AuthenticationProviderProps):
         if (userData) {
             const userUpdatedData = await api.get(`users/${JSON.parse(userData).id}`);
             if (userUpdatedData.status === 200) {
-                console.log(userUpdatedData.data)
                 setUser(userUpdatedData.data);
                 await save("userData", JSON.stringify(userUpdatedData.data));
             }

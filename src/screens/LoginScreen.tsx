@@ -5,7 +5,7 @@ import {Routes} from "../navigation/Route";
 import {ScreenProps} from "../interfaces/ScreenProps";
 import PasswordInput from "../components/PasswordInput";
 import {useAuthentication} from "../context/Authentication";
-import {ImageProps, View} from "react-native";
+import {ImageProps, StatusBar, View} from "react-native";
 import {Image} from "expo-image";
 import OrSeparator from "../components/OrSeparator";
 import PatPerdueButton from "../components/PatPerdueButton";
@@ -37,7 +37,7 @@ const LoginScreen = ({navigation}: ScreenProps) => {
 
     return (
         <ScreenContainer withScroll backgroundColor={'#1B404E'}>
-            <Layout style={{height: '35%', alignItems: "center", justifyContent: "center"}}>
+            <Layout style={{height: '35%', alignItems: "center", justifyContent: "center", paddingTop: StatusBar.currentHeight}}>
                 <Image
                     source={require('../../assets/patperdue_logo.png')}
                     style={{
