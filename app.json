@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/patperdue_splash_logo.png",
         "backgroundColor": "#FCE9D5"
-      }
+      },
+      "package": "com.ecv.patperdue"
     },
     "web": {
       "favicon": "./assets/favicon.png"
