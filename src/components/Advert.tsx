@@ -23,7 +23,7 @@ const Advert = ({item, index, navigation}: { item: any, index: number, navigatio
             <Image
                 source={{uri: API_ADDRESS + JSON.parse(item["advert_images"])[0]}}
                 style={styles.image}
-                contentPosition={"top center"}
+                contentPosition={"center"}
                 contentFit={"cover"}
             />
             <View style={styles.textContainer}>

@@ -44,7 +44,7 @@ const AdvertScreen = ({navigation, route}: BottomTabScreenProps<any>) => {
                             key={index}
                             source={{ uri: API_ADDRESS + item }}
                             style={{ width:200, height: 200 }}
-                            contentPosition={"top center"}
+                            contentPosition={"center"}
                         />
                     }
                     nestedScrollEnabled={true}

@@ -1,10 +1,10 @@
 import ScreenContainer from "../components/ScreenContainer";
 import { StatusBar, StyleSheet } from "react-native";
-import { Layout, Input } from "@ui-kitten/components";
+import {Layout, Input, Text} from "@ui-kitten/components";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import MapView, { Circle, LatLng, Marker } from "react-native-maps";
 import { useUserLocation } from "../context/UserLocation";
-import {useContext, useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import OutlineButton from "../components/OutlineButton";
 import { Routes } from "../navigation/Route";
 import CreateAdvertContext from "../context/CreateAdvertContext";
@@ -32,6 +32,7 @@ const AdvertLocalisationScreen = ({
   return (
     <ScreenContainer withScroll backgroundColor={"#fff"}>
       <Layout style={styles.container}>
+        <Text style={styles.label}>Choisissez la zone de recherche en bougeant le marqueur</Text>
         <MapView
           ref={mapRef}
           style={{ width: "100%", height: 450 }}
@@ -100,6 +101,12 @@ const styles = StyleSheet.create({
   inputText: {
     color: "black",
   },
+  label: {
+    fontSize: 12,
+    fontWeight: "800",
+    color: "#698188",
+    marginBottom: 4
+  }
 });
 
 export default AdvertLocalisationScreen;

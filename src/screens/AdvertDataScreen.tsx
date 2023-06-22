@@ -213,7 +213,7 @@ const renderImage = (
             <Image
                 source={{uri: image.uri}}
                 style={{width: "100%", height: "100%"}}
-                contentPosition={"top center"}
+                contentPosition={"center"}
             />
         </TouchableOpacity>
     );
