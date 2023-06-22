@@ -54,7 +54,6 @@ const MapScreen = ({navigation}: BottomTabScreenProps<any>) => {
                                 longitude: advert.longitude
                             }}
                             onPress={() => {
-                                console.log("selected advert", advert)
                                 setAdvertMarkerSelected(advert)
                             }}
                         >
