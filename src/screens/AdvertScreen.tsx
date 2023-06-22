@@ -2,7 +2,7 @@ import ScreenContainer from "../components/ScreenContainer";
 import {Layout, Text} from "@ui-kitten/components";
 import {BottomTabScreenProps} from "@react-navigation/bottom-tabs";
 import React, {useEffect, useState} from "react";
-import {FlatList, StatusBar, StyleSheet, TouchableOpacity, View} from "react-native";
+import {FlatList, Modal, StatusBar, StyleSheet, TouchableOpacity, View} from "react-native";
 import {BackIcon} from "../components/CustomHeader";
 import {Image} from "expo-image";
 import {API_ADDRESS} from "../hooks/UseApi";
@@ -10,11 +10,14 @@ import dayjs from "dayjs";
 import OutlineButton from "../components/OutlineButton";
 import MapView, {Circle, Marker} from "react-native-maps";
 import {useUserLocation} from "../context/UserLocation";
+import ImageViewer from "react-native-image-zoom-viewer";
 
 const AdvertScreen = ({navigation, route}: BottomTabScreenProps<any>) => {
 
     const { location } = useUserLocation();
     const [animal, setAnimal] = useState<any | undefined>(undefined);
+
+    const [showModalImages, setShowModalImages] = useState<number>(-1);
 
     useEffect(() => {
         if (route.params) {
@@ -45,11 +48,20 @@ const AdvertScreen = ({navigation, route}: BottomTabScreenProps<any>) => {
                             source={{ uri: API_ADDRESS + item }}
                             style={{ width:200, height: 200 }}
                             contentPosition={"center"}
+                            onTouchEnd={() => setShowModalImages(index)}
                         />
                     }
                     nestedScrollEnabled={true}
                     horizontal
                 />
+                <Modal visible={showModalImages !== -1} transparent>
+                    <ImageViewer
+                        index={showModalImages}
+                        imageUrls={JSON.parse(animal["advert_images"]).map((img: string) => ({url: API_ADDRESS + img}))}
+                        enableSwipeDown
+                        onSwipeDown={() => setShowModalImages(-1)}
+                    />
+                </Modal>
                 <View style={styles.centerContainer}>
                     <View>
                         <Text style={styles.textRegular}>Sexe : <Text style={{...styles.textRegular, ...styles.textBold}}>{animal["animal_sex"]}</Text></Text>
