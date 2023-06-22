@@ -129,7 +129,7 @@ const AdvertCreationNavigator = ({
         <Stack.Screen
           name={Routes.ADVERT_CONFIRMATION}
           component={AdvertConfirmation}
-          options={{ headerShown: true, headerBackTitleVisible: false }}
+          options={{ headerShown: true, headerTitle: "" }}
         />
       </Stack.Navigator>
     </CreateAdvertContext.Provider>

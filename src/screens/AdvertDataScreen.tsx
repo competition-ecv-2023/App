@@ -142,9 +142,9 @@ const AdvertDataScreen = ({navigation}: NativeStackScreenProps<any>) => {
                 <Picker
                     placeholder={"Son sexe"}
                     mode={"dropdown"}
-                    prompt={"Son sexe"}
                     selectedValue={advert.animalSex}
                     onValueChange={(value) => updateAdvertField("animalSex", value)}
+                    onLayout={() => updateAdvertField("animalSex", "mâle")}
                     style={[styles.input, {borderRadius: 10, borderWidth: 5, borderColor: "red", marginVertical: 0, marginBottom: 10}]}
                 >
                     <Picker.Item label="Mâle" value="mâle"/>

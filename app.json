@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/patperdue_splash_logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#F19B3F"
+      "backgroundColor": "#FCE9D5"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,8 +19,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/patperdue_logo.png",
-        "backgroundColor": "#FF0000"
+        "foregroundImage": "./assets/patperdue_splash_logo.png",
+        "backgroundColor": "#FCE9D5"
       }
     },
     "web": {
