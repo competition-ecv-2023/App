@@ -7,6 +7,8 @@ import {useApi} from "../hooks/UseApi";
 import {FlatList, RefreshControl} from "react-native";
 import Advert from "../components/Advert";
 import {BottomTabScreenProps} from "@react-navigation/bottom-tabs";
+import {isBackgroundLocationAvailableAsync} from "expo-location";
+import {Routes} from "../navigation/Route";
 
 const HomeScreen = ({navigation}: BottomTabScreenProps<any>) => {
     const api = useApi();
@@ -33,12 +35,14 @@ const HomeScreen = ({navigation}: BottomTabScreenProps<any>) => {
                         title: "Avez-vous perdu votre partenaire ?",
                         buttonTitle: "Créer votre annonce",
                         onPress: () => {
+                            navigation.navigate(Routes.ADVERT_NAVIGATOR)
                         }
                     },
                     {
                         title: "Sauver un animal ?",
                         buttonTitle: "Voir les annonces",
                         onPress: () => {
+                            navigation.navigate(Routes.HOME_SCREEN)
                         }
                     },
                 ]}
@@ -46,7 +50,7 @@ const HomeScreen = ({navigation}: BottomTabScreenProps<any>) => {
             <Text>Accueil</Text>
             <FlatList
                 data={query.data}
-                renderItem={({item, index}) => <Advert item={item} index={index} navigation={navigation} />}
+                renderItem={({item, index}) => <Advert item={item} index={index} navigation={navigation}/>}
                 refreshControl={
                     <RefreshControl
                         refreshing={query.isFetching}
