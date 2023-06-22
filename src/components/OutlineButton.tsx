@@ -5,13 +5,14 @@ interface OutlineButtonProps {
     onPress?: () => void;
     title: string;
     disabled?: boolean;
+    smallText?: boolean;
 }
 
-const OutlineButton = ({onPress, title, disabled}: OutlineButtonProps) => {
+const OutlineButton = ({onPress, title, disabled, smallText}: OutlineButtonProps) => {
 
     return (
         <TouchableOpacity onPress={onPress} style={{padding: 10}} disabled={disabled}>
-            <Text style={[styles.button, disabled ? styles.disabled : {}]}>{title}</Text>
+            <Text style={[styles.button, disabled ? styles.disabled : {}, smallText ? {fontSize: 12} : {}]}>{title}</Text>
         </TouchableOpacity>
     )
 }
