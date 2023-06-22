@@ -17,13 +17,13 @@ const AdvertConfirmation = ({navigation}: NativeStackScreenProps<any>) => {
                 <Text style={styles.title}>Votre annonce est publiée !</Text>
                 <Text style={styles.text}>L'annonce de {advert.animalName} a été publiée sur Pat'Perdue ainsi que sur le
                     groupe Facebook de votre région.</Text>
-                <OutlineButton title="Accéder à l'annonce" onPress={() => navigation.navigate(Routes.HOME_SCREEN)}/>
+                <OutlineButton title="Accéder à l'annonce" onPress={() => {navigation.navigate(Routes.ADVERT_DATA_SCREEN); navigation.navigate(Routes.HOME_SCREEN);}}/>
                 <Text style={styles.title}>Contactez la communauté</Text>
                 <Text style={styles.text}>Les utilisateurs se trouvant dans la zone de recherche vont être alerter de la
                     fugue de {advert.animalName} !</Text>
                 <Text style={styles.text}>Ils pourront déclarer l'animal comme retrouvé et vous contacter en cas
                     d'informations.</Text>
-                <OutlineButton title="Voir la carte" onPress={() => navigation.navigate(Routes.MAP_SCREEN)}/>
+                <OutlineButton title="Voir la carte" onPress={() => {navigation.navigate(Routes.ADVERT_DATA_SCREEN); navigation.navigate(Routes.MAP_SCREEN);}}/>
             </Layout>
         </ScreenContainer>
     )
