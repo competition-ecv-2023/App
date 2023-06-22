@@ -4,7 +4,7 @@ import { Layout, Input } from "@ui-kitten/components";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import MapView, { Circle, LatLng, Marker } from "react-native-maps";
 import { useUserLocation } from "../context/UserLocation";
-import { useContext, useEffect, useState } from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import OutlineButton from "../components/OutlineButton";
 import { Routes } from "../navigation/Route";
 import CreateAdvertContext from "../context/CreateAdvertContext";
@@ -15,6 +15,7 @@ const AdvertLocalisationScreen = ({
   const { advert, updateAdvertField, updateAdvertLocation, createAdvert } =
     useContext(CreateAdvertContext);
   const { location, errorMsg } = useUserLocation();
+  const mapRef = useRef(null);
 
   const [markerCoords, setMarkerCoords] = useState<LatLng>({
     latitude: 0,
@@ -31,15 +32,8 @@ const AdvertLocalisationScreen = ({
   return (
     <ScreenContainer withScroll backgroundColor={"#fff"}>
       <Layout style={styles.container}>
-        <Input
-          placeholder={"Ville de disparition"}
-          style={styles.input}
-          textStyle={styles.inputText}
-          value={advert.city}
-          onChangeText={(value) => updateAdvertField("city", value)}
-          size={"large"}
-        />
         <MapView
+          ref={mapRef}
           style={{ width: "100%", height: 450 }}
           initialCamera={{
             zoom: 15,
@@ -51,7 +45,11 @@ const AdvertLocalisationScreen = ({
             pitch: 0,
           }}
           showsUserLocation
-          onMapLoaded={() => updateAdvertLocation(location?.coords ?? {latitude: 0, longitude: 0})}
+          onMapLoaded={async () => {
+            // @ts-ignore
+            const address = await mapRef.current?.addressForCoordinate(location?.coords);
+            updateAdvertLocation(location?.coords ?? {latitude: 0, longitude: 0}, address.locality);
+          }}
         >
           <Marker
             coordinate={{
@@ -60,8 +58,12 @@ const AdvertLocalisationScreen = ({
             }}
             draggable
             onDrag={(e) => setMarkerCoords(e.nativeEvent.coordinate)}
-            onDragEnd={(e) => updateAdvertLocation(e.nativeEvent.coordinate)}
-            image={require("../../assets/dog_marker.png")}
+            onDragEnd={async (e) => {
+              const coords = e.nativeEvent.coordinate;
+              // @ts-ignore
+              const address = await mapRef.current?.addressForCoordinate(e.nativeEvent.coordinate)
+              updateAdvertLocation(coords, address.locality);
+            }}
           />
           <Circle
             center={markerCoords}
@@ -70,6 +72,15 @@ const AdvertLocalisationScreen = ({
             strokeWidth={0}
           />
         </MapView>
+        <Input
+            label={"Ville de disparition"}
+            placeholder={"Ville de disparition"}
+            style={styles.input}
+            textStyle={styles.inputText}
+            value={advert.city}
+            onChangeText={(value) => updateAdvertField("city", value)}
+            size={"large"}
+        />
         <OutlineButton title={"Ajouter votre annonce"} onPress={createAdvert} />
       </Layout>
     </ScreenContainer>

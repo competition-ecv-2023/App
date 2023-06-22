@@ -1,7 +1,7 @@
 import {createNativeStackNavigator,} from "@react-navigation/native-stack";
 import AdvertDataScreen from "../screens/AdvertDataScreen";
 import {Routes} from "./Route";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import CreateAdvertContext, {AdvertPropsType,} from "../context/CreateAdvertContext";
 import AdvertConfirmation from "../screens/AdvertConfirmation";
 import CustomHeader from "../components/CustomHeader";
@@ -41,15 +41,20 @@ const AdvertCreationNavigator = ({
 
   const [advert, setAdvert] = useState<AdvertPropsType>(defaultAdvert);
 
+  useEffect(() => {
+    console.log(advert.latitude, advert.longitude, advert.city);
+  }, [advert])
+
   const updateAdvertField = (field: string, value: any) => {
     setAdvert({ ...advert, [field]: value });
   };
 
-  const updateAdvertLocation = (markerCoords: LatLng) => {
+  const updateAdvertLocation = (markerCoords: LatLng, city: string) => {
     setAdvert({
       ...advert,
       latitude: markerCoords.latitude,
       longitude: markerCoords.longitude,
+      city
     });
   };
 
@@ -67,7 +72,13 @@ const AdvertCreationNavigator = ({
           });
         }
       })
-      .catch((e: AxiosError) => console.log(e.response));
+      .catch((e: AxiosError) => {
+        console.log(e.response);
+        showMessage({
+          type: "danger",
+          message: "Il y a une erreur pendant la création de votre annonce",
+        });
+      });
   };
 
   const formatData = () => {

@@ -16,12 +16,11 @@ export interface AdvertPropsType {
   radius: number;
   isPremium: boolean;
   isGoogleAds: boolean;
-  advert_images?: string[];
 }
 
 export default createContext({
   advert: {} as AdvertPropsType,
   updateAdvertField: (field: string, value: any) => {},
-  updateAdvertLocation: (markerCoords: LatLng) => {},
+  updateAdvertLocation: (markerCoords: LatLng, city: string) => {},
   createAdvert: () => {},
 });

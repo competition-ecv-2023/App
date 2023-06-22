@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { useCallback } from "react";
-import { View } from "react-native";
+import { View, StatusBar as RnStatusBar } from "react-native";
 import FlashMessage from "react-native-flash-message";
 import dayjs from "dayjs";
 require('dayjs/locale/fr')
@@ -60,7 +60,7 @@ export default function App() {
               <AuthenticationProvider>
                 <StatusBar style="auto" />
                 <Navigator />
-                <FlashMessage position="top" floating animated />
+                <FlashMessage position="top" floating animated statusBarHeight={RnStatusBar.currentHeight}/>
               </AuthenticationProvider>
             </NavigationContainer>
           </QueryClientProvider>
